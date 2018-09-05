@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C3F16BB322F05C764FE6E3A /* libPods-mapbox-helloworld.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA7ABF3627FE847CA2A46DA4 /* libPods-mapbox-helloworld.a */; };
+		F931CE30213863CB001C9129 /* MotionDnaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F931CE2F213863CB001C9129 /* MotionDnaController.swift */; };
 		F939F26021385E4700420E63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F939F25F21385E4700420E63 /* AppDelegate.swift */; };
 		F939F26221385E4700420E63 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F939F26121385E4700420E63 /* ViewController.swift */; };
 		F939F26521385E4700420E63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F939F26321385E4700420E63 /* Main.storyboard */; };
@@ -34,6 +36,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B2FEEE8FA3425770C9D564E /* Pods-mapbox-helloworld.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mapbox-helloworld.release.xcconfig"; path = "Pods/Target Support Files/Pods-mapbox-helloworld/Pods-mapbox-helloworld.release.xcconfig"; sourceTree = "<group>"; };
+		79DF643069DD65AC7D44A0DF /* Pods-mapbox-helloworld.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mapbox-helloworld.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mapbox-helloworld/Pods-mapbox-helloworld.debug.xcconfig"; sourceTree = "<group>"; };
+		CA7ABF3627FE847CA2A46DA4 /* libPods-mapbox-helloworld.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-mapbox-helloworld.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F931CE2F213863CB001C9129 /* MotionDnaController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionDnaController.swift; sourceTree = "<group>"; };
 		F939F25C21385E4700420E63 /* mapbox-helloworld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "mapbox-helloworld.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F939F25F21385E4700420E63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F939F26121385E4700420E63 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -54,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C3F16BB322F05C764FE6E3A /* libPods-mapbox-helloworld.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +81,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		379DC01D2ED31BF7309003B1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CA7ABF3627FE847CA2A46DA4 /* libPods-mapbox-helloworld.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8664835A8A436A3D8905F2AA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				79DF643069DD65AC7D44A0DF /* Pods-mapbox-helloworld.debug.xcconfig */,
+				2B2FEEE8FA3425770C9D564E /* Pods-mapbox-helloworld.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		F939F25321385E4700420E63 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +105,8 @@
 				F939F27321385E4800420E63 /* mapbox-helloworldTests */,
 				F939F27E21385E4800420E63 /* mapbox-helloworldUITests */,
 				F939F25D21385E4700420E63 /* Products */,
+				8664835A8A436A3D8905F2AA /* Pods */,
+				379DC01D2ED31BF7309003B1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,6 +129,7 @@
 				F939F26621385E4800420E63 /* Assets.xcassets */,
 				F939F26821385E4800420E63 /* LaunchScreen.storyboard */,
 				F939F26B21385E4800420E63 /* Info.plist */,
+				F931CE2F213863CB001C9129 /* MotionDnaController.swift */,
 			);
 			path = "mapbox-helloworld";
 			sourceTree = "<group>";
@@ -132,9 +159,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F939F28421385E4800420E63 /* Build configuration list for PBXNativeTarget "mapbox-helloworld" */;
 			buildPhases = (
+				630E792EB62F1E0FAF8FC074 /* [CP] Check Pods Manifest.lock */,
 				F939F25821385E4700420E63 /* Sources */,
 				F939F25921385E4700420E63 /* Frameworks */,
 				F939F25A21385E4700420E63 /* Resources */,
+				540980AC3A1C9372D1E04E2F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -193,6 +222,11 @@
 				TargetAttributes = {
 					F939F25B21385E4700420E63 = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					F939F26F21385E4800420E63 = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -251,12 +285,56 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		540980AC3A1C9372D1E04E2F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-mapbox-helloworld/Pods-mapbox-helloworld-frameworks.sh",
+				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework",
+				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework.dSYM",
+				"${PODS_ROOT}/MotionDnaSDK/MotionDnaSDK.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapbox.framework",
+				"${DWARF_DSYM_FOLDER_PATH}/Mapbox.framework.dSYM",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MotionDnaSDK.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-mapbox-helloworld/Pods-mapbox-helloworld-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		630E792EB62F1E0FAF8FC074 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-mapbox-helloworld-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F939F25821385E4700420E63 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				F939F26221385E4700420E63 /* ViewController.swift in Sources */,
+				F931CE30213863CB001C9129 /* MotionDnaController.swift in Sources */,
 				F939F26021385E4700420E63 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -428,11 +506,14 @@
 		};
 		F939F28521385E4800420E63 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 79DF643069DD65AC7D44A0DF /* Pods-mapbox-helloworld.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z633UZ59K8;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "mapbox-helloworld/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -446,11 +527,14 @@
 		};
 		F939F28621385E4800420E63 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2B2FEEE8FA3425770C9D564E /* Pods-mapbox-helloworld.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z633UZ59K8;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "mapbox-helloworld/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

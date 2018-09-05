@@ -1,0 +1,1 @@
+../../../../MotionDnaSDK/MotionDnaSDK.framework/Headers/MotionDnaSDK_shared.h

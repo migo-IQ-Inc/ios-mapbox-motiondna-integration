@@ -1,0 +1,28 @@
+PODS:
+  - Mapbox-iOS-SDK (4.3.0)
+  - MotionDnaSDK (1.7.0)
+
+DEPENDENCIES:
+  - Mapbox-iOS-SDK (~> 4.3)
+  - MotionDnaSDK (from `https://github.com/navisens/iOS-SDK.git`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Mapbox-iOS-SDK
+
+EXTERNAL SOURCES:
+  MotionDnaSDK:
+    :git: https://github.com/navisens/iOS-SDK.git
+
+CHECKOUT OPTIONS:
+  MotionDnaSDK:
+    :commit: 07a461bc772deebe776284d4399ed74756b1fcf3
+    :git: https://github.com/navisens/iOS-SDK.git
+
+SPEC CHECKSUMS:
+  Mapbox-iOS-SDK: 7d8d510088ba7900d11aa3ceb98f563b040efca1
+  MotionDnaSDK: f621c4456ef1f0ff1c04a34f366803d26aa7701d
+
+PODFILE CHECKSUM: 12fe7458a6315572875deec8eea36fb272488151
+
+COCOAPODS: 1.5.2
