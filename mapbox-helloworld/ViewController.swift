@@ -101,8 +101,9 @@ class MotionDnaLocationManager : NSObject, MGLLocationManager{
         
         positions.append(currentLocation)
         DispatchQueue.main.async{
-            // Need to find a way to assign a CLHeading type from our internal magneticHeading/heading types from MotionDna.getLocation()
+            // Output positions
             self.delegate?.locationManager(self, didUpdate: positions)
+            // Output heading
             self.delegate?.locationManager(self, didUpdate: heading)
         }
     }
