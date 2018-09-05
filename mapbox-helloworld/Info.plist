@@ -20,8 +20,6 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>MGLMapboxAccessToken</key>
-	<string>pk.eyJ1IjoibHVjYXNtY2tlbm5hIiwiYSI6ImNpc2k5dTlpZzAwM20ydnB1bmljb2Zid3AifQ.U8Ht8kFiCIC7TWJcBfmDjA</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Location to display where you are on the map.</string>
 	<key>UIBackgroundModes</key>
