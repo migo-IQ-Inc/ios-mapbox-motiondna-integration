@@ -16,7 +16,7 @@ class MotionDnaController : MotionDnaSDK
     var receiver_ : MotionDnaLocationManager?
     func start(_ receiver : MotionDnaLocationManager){
         // "Enter your Navisens developer key, please inquire it here: https://navisens.com/"
-        runMotionDna("key", receiver: self)
+        runMotionDna("YOURDEVELOPERKEY", receiver: self)
         setExternalPositioningState(HIGH_ACCURACY)
         receiver_=receiver
     }
