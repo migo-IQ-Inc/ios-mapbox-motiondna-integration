@@ -1,8 +1,8 @@
 
 This is an example of Navisens' SDK integration with MapBox's SDK.
 
-Get a key for the iOS Mapbox SDK [here](https://www.mapbox.com/account/):
-And add it to the Info.plist [here](https://www.mapbox.com/install/ios/cocoapods-permission/):
+Get a key for the iOS Mapbox SDK [here](https://www.mapbox.com/account/).  
+And add it to the Info.plist [here](https://www.mapbox.com/install/ios/cocoapods-permission/).
 
 Then retrieve a Navisens SDK key [here](https://navisens.com/).
 
