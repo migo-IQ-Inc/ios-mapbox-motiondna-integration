@@ -17,4 +17,6 @@ After completing these steps should be seeing the Navisens position on the MapBo
 
 Have fun!
 
+
+
 ![Scheme](navisens_mapbox.jpg)
