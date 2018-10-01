@@ -22,7 +22,7 @@ class ViewController: UIViewController, MGLMapViewDelegate {
         // Override MapView internal LocationManager
         navisensLocationManager.view = self
         mapView.locationManager = navisensLocationManager
-//        mode so that the arrow will appear.
+        // mode so that the arrow will appear.
         mapView.userTrackingMode = .followWithHeading
         // Enable the permanent heading indicator, which will appear when the tracking mode is not `.followWithHeading`.
         mapView.showsUserHeadingIndicator = true
@@ -31,48 +31,42 @@ class ViewController: UIViewController, MGLMapViewDelegate {
     }
 }
 
-// MotionDnaHeading override class.
-class MotionDnaHeading : CLHeading
-{
-    var motionDnaTrueHeading:CLLocationDirection!
-    var motionDnaMagneticHeading:CLLocationDirection!
-    var motionDnaTimestamp:Date!
-    var motionDnaHeadingAccuracy:CLLocationDirection!
-    override var trueHeading: CLLocationDirection{
-        return self.motionDnaTrueHeading!
-    }
-    override var magneticHeading: CLLocationDirection{
-        return self.motionDnaMagneticHeading!
-    }
-    override var timestamp: Date{
-        return self.motionDnaTimestamp!
-    }
-    override var headingAccuracy: CLLocationDirection{
-        return self.motionDnaHeadingAccuracy!
+class MotionDnaLocationManager : NSObject, MGLLocationManager, MotionDnaLocationManagerDelegate{
+    func locationManager(_ manager: MotionDnaLocationManagerDataSource!, didUpdate locations: [CLLocation]!) {
+        DispatchQueue.main.async{
+            // Output positions
+            self.delegate?.locationManager(self, didUpdate: locations)
+        }
     }
     
-    init(_motionDna: MotionDna!)
-    {
-        super.init()
-        self.motionDnaTrueHeading=_motionDna.getLocation().heading
-        self.motionDnaMagneticHeading=_motionDna.getLocation().magneticHeading
-        self.motionDnaTimestamp=Date(timeIntervalSinceNow: _motionDna.getTimestamp())
-        self.motionDnaHeadingAccuracy=CLLocationDirection(10)// We do not provided a heading accuracy in our SDK yet.
+    func locationManager(_ manager: MotionDnaLocationManagerDataSource!, didFailWithError error: Error?) {
+        let cas = error! as NSError // Xcode is converting our NSError to an Error wrongly in the delegate auto completion, therefore we need to cast it...
+        
+        if (cas.code == AUTHENTICATION_FAILED.rawValue)
+        {
+            DispatchQueue.main.async{
+                self.authFailure()
+            }
+        }
     }
-    required init(coder: NSCoder)
-    {
-        super.init()
+    
+    func locationManager(_ manager: MotionDnaLocationManagerDataSource!, didUpdate newHeading: CLHeading!) {
+        DispatchQueue.main.async{
+            // Output heading
+            self.delegate?.locationManager(self, didUpdate: newHeading)
+        }
     }
-}
-
-class MotionDnaLocationManager : NSObject, MGLLocationManager{
+    
+    func locationManagerShouldDisplayHeadingCalibration(_ manager: MotionDnaLocationManagerDataSource!) -> Bool {
+        return false
+    }
     
     override func `self`() -> Self {
         return self
     }
 
     var delegate: MGLLocationManagerDelegate?
-    let controller = MotionDnaController()
+    let sdk = MotionDnaSDK()
     var view:ViewController?
     
 
@@ -83,34 +77,16 @@ class MotionDnaLocationManager : NSObject, MGLLocationManager{
     }
     
     func requestAlwaysAuthorization() {
-        controller.setExternalPositioningState(HIGH_ACCURACY)
+        sdk.setExternalPositioningState(HIGH_ACCURACY)
     }
     
     func requestWhenInUseAuthorization() {
-        controller.setExternalPositioningState(HIGH_ACCURACY)
-    }
-    
-    func receive(_ motionDna: MotionDna!)
-    {
-        // Here I am mapping our MotionDna type to Apple's CLLocation type which is the expected type for MGLLocationManager.
-        let date = Date(timeIntervalSince1970: motionDna.getTimestamp())
-        var currentLocation = CLLocation(coordinate: CLLocationCoordinate2D(latitude: motionDna.getLocation().globalLocation.latitude, longitude: motionDna.getLocation().globalLocation.longitude), altitude: CLLocationDistance(motionDna.getLocation().absoluteAltitude), horizontalAccuracy: CLLocationAccuracy(motionDna.getLocation().uncertainty.x), verticalAccuracy: CLLocationAccuracy(motionDna.getLocation().absoluteAltitudeUncertainty), course: CLLocationDirection(motionDna.getLocation().heading), speed: CLLocationDistance(motionDna.getMotion().stepFrequency),
-                                         timestamp: date)
-        var positions: [CLLocation] = []
-        var heading = MotionDnaHeading(_motionDna: motionDna)
-        
-        positions.append(currentLocation)
-        DispatchQueue.main.async{
-            // Output positions
-            self.delegate?.locationManager(self, didUpdate: positions)
-            // Output heading
-            self.delegate?.locationManager(self, didUpdate: heading)
-        }
+        sdk.setExternalPositioningState(HIGH_ACCURACY)
     }
     
     func authFailure(){
         // Authentication failure.
-        let alert = UIAlertController(title: "Authentication failure", message: "Please enter your developer key in the MotionDnaController.swift runMotionDna method. Get your key here: https://navisens.com/ ", preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "Authentication failure", message: "Please enter your developer key in the ViewController.swift runMotionDna method. Get your key here: https://navisens.com/ ", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
             switch action.style{
             case .default:
@@ -128,13 +104,16 @@ class MotionDnaLocationManager : NSObject, MGLLocationManager{
     }
     
     func startUpdatingLocation() {
-        controller.start(self)
-        controller.setLocationNavisens()// Configures SDK to use our complete positioning.
-//        controller.setLocationLatitude(37.787742, longitude: -122.396859, andHeadingInDegrees: 315)// Configures SDK to start on inertial estimate from a specific lat/lon/heading.
+        sdk.runMotionDna("YOURDEVELOPERKEY")
+        sdk.motionDnaDelegate=self
+        sdk.setExternalPositioningState(HIGH_ACCURACY)
+        sdk.setBinaryFileLoggingEnabled(true)
+        sdk.setLocationNavisens()// Configures SDK to use our complete positioning.
+//        sdk.setLocationLatitude(37.787742, longitude: -122.396859, andHeadingInDegrees: 315)// Configures SDK to start our inertial estimate from a specific lat/lon/heading.
     }
     
     func stopUpdatingLocation() {
-        controller.stop()
+        sdk.stop()
     }
     
     var headingOrientation: CLDeviceOrientation = CLDeviceOrientation(rawValue: 10)!
